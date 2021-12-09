@@ -74,7 +74,11 @@ def get_digits(input_list):
         output = sp[1].strip().split(" ")
 
         str_1 = ""
+        str_2 = ""
+        str_3 = ""
         str_4 = ""
+        str_5 = ""
+        str_6 = ""
         str_7 = ""
         str_8 = ""
         str_9 = ""
@@ -90,30 +94,45 @@ def get_digits(input_list):
                 str_4 = num
             elif len(num) == 7:
                 str_8 = num
+        
+        rest = remove_used([str_1, str_4, str_7, str_8], input)
 
-
-        to_remove = [str_1, str_4, str_7, str_8]
-        rest = remove_used(to_remove, input)
-       
-            
-        for n in rest:
-            if len(n) == len(str_8)-1:
-                for l in str_4:
-                    if not l in n:
-                        str_0 = n
-
-
+        for s in rest:
+            if len(s) == 6:
+                for char in str_8:
+                    if char not in s:
+                        str_0 = s
+        
         rest = remove_used([str_0], rest)
-            
-        for n in rest:
-            if len(n) == len(str_8)-1:
-                for l in str_1:
-                    if not l in n:
-                        str_9 = n
+        
+        for s in rest:
+            if len(s) == 6:
+                for char in str_4:
+                    if not char in s:
+                        str_6 = s
+        
+        rest = remove_used([str_6], rest)
+
+        for s in rest:
+            if len(s) == 6:
+                str_9 = s
         
         rest = remove_used([str_9], rest)
+        
+        for s in rest:
+            if len(s) == 5:
+                same = 0
+                for char in str_6:
+                    if char in s:
+                        same += 1
+                
+                if same == 5:
+                    str_5 = s
 
-        print(rest)  
+
+        print(str_6)
+        
+       
             
 get_digits(lines)
 
